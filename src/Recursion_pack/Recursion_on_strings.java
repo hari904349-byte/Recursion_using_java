@@ -1,8 +1,10 @@
 package Recursion_pack;
 
+import java.util.ArrayList;
+
 public class Recursion_on_strings {
     public static void main(String[] args) {
-        subseq("","abc");
+        System.out.println(subseqret("","abc"));
     }
 
 
@@ -44,4 +46,19 @@ public class Recursion_on_strings {
         subseq(p, up.substring(1));
     }
 
+    public static ArrayList<String> subseqret(String p, String up){
+        if(up.isEmpty()){
+            ArrayList<String> res=new ArrayList<>();
+            res.add(p);
+            return res;
+        }
+        char ch=up.charAt(0);
+        ArrayList<String> left= subseqret(p+ch, up.substring(1));
+        ArrayList<String> rigth=subseqret(p, up.substring(1));
+
+        left.addAll(rigth);
+        return left;
+    }
+
 }
+
